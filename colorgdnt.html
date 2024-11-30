@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gradent</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik+Glitch&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Pacifico&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik+Glitch&display=swap');
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Jost", sans-serif;
+        }
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            gap: 10px;
+            background-image: linear-gradient(to right top,#AAF739,#3DEAA0);
+        }
+        .hero{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 100vw;
+        }
+        h1{
+            position: absolute;
+            top: -10rem;
+            font-family: "Pacifico", cursive;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 5rem;
+            color: darkgreen;
+        }
+        .btn1,.btn2{
+            all: unset;
+            width: 8rem;
+            background-color: yellow;
+            text-align: center;
+            border: solid 1px black;
+            border-radius: 4rem;
+            height: 2rem;
+            cursor: pointer;
+            transition: all 1s ease;
+        }
+        .btn1:hover,.btn2:hover{
+            scale: 1.05;
+        }
+        p{
+            height: 4rem;
+            background-color: beige;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem .4rem;
+            border-radius: 5px;
+            border-left: solid;
+            cursor: pointer;
+        }
+        .sub div{
+            margin-top: 1rem;
+            text-align: center;
+            display: none;
+            color: green;
+            font-family: "Pacifico", cursive;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <h1>Get Your gradent!</h1>
+        <div>
+        <button class="btn1">#AAF739</button>
+        <button class="btn2">#3DEAA0</button>
+        </div>
+    </section>
+    <div class="sub">
+        <p>background-image: linear-gradient(to right top, #AAF739,#3DEAA0);</p>
+        <div id="copydiv">Copied!</div>
+    </div>
+</body>
+<script>
+    let b1=document.querySelector(".btn1")
+    let b2=document.querySelector(".btn2")
+    let para=document.querySelector("p")
+    let hexvalues="0123456789ABCDEF"
+    let color1='#AAF739'
+    let color2='#3DEAA0'
+    
+    const hexgen=()=>{
+        var hex="#"
+        for(let i=0;i<6;i++){
+        hex=hex+hexvalues[Math.floor(Math.random()*16)]
+    }
+    return hex
+    }
+    const btn1handle=()=>{
+        color1=hexgen()
+        b1.textContent=color1
+        b1.style.backgroundColor=color1
+        document.querySelector("p").textContent=`background-image: linear-gradient(to right top, ${color1},${color2});`
+        document.querySelector("body").style.backgroundImage=` linear-gradient(to right top, ${color1},${color2})`
+        document.getElementById("copydiv").style.display='none'
+    }
+    const btn2handle=()=>{
+        color2=hexgen()
+        b2.textContent=color2
+        b2.style.backgroundColor=color2
+                document.querySelector("p").textContent=`background-image: linear-gradient(to right top, ${color1},${color2});`
+        document.querySelector("body").style.backgroundImage=` linear-gradient(to right top, ${color1},${color2})`
+        document.getElementById("copydiv").style.display='none'
+    }
+    
+    b1.addEventListener('click',btn1handle)
+    b2.addEventListener('click',btn2handle)
+    para.addEventListener('click',()=>{
+        navigator.clipboard.writeText(para.textContent)
+        document.getElementById("copydiv").style.display='block'
+    })
+
+</script>
+</html>
